@@ -7,6 +7,8 @@
 
     header('content-type: image/jpeg');
     imagejpeg($img);
+    
+    imagejpeg($img, 'imgs/brad.jpg');
 
     imagedestroy($img);
 ?>
