@@ -60,7 +60,13 @@
     }
 
     class Bike {
-        private $speed = 0;
+        protected $speed;
+
+        // 建構式/子/方法
+        function __construct(){
+            //echo 'OK';
+            $this->speed = 0;
+        }
 
         function upSpeed(){
             $this->speed = $this->speed < 1 ? 1 : $this->speed * 1.2;
@@ -75,5 +81,28 @@
         }
     }
 
+    class Scooter extends Bike {
+        private $gear;
+
+        function __construct(){
+            parent::__construct();
+            $this->gear = 0;
+        }
+
+        function upSpeed(){
+            if ($this->gear > 0){
+                $this->speed = 
+                    $this->speed < 1 ? 1 : $this->speed * 1.7 * $this->gear;
+            }
+            
+        }
+
+        function changeGear($gear = 0){
+            if ($gear >= 0 && $gear <= 4){
+                $this->gear = $gear;
+            }
+        }
+
+    }
 
 ?>
