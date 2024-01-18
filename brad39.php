@@ -3,9 +3,13 @@
     $mysqli = new mysqli('localhost', 'root', '', 'ispan', 3306);
     $mysqli->set_charset('utf8');
 
-    $sql = 'SELECT id, name, addr, city, town, picurl FROM food';
+    $sql = 'SELECT id, name, addr, city, town, picurl FROM food ' .
+        'WHERE name LIKE ? OR addr LIKE ? OR city LIKE ? OR town LIKE ?';
 
+    $key = '%中正%';
     $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param('ssss', $key, $key, $key, $key);
+
     if ($stmt->execute()){
         $stmt->store_result();
         $stmt->bind_result($id, $name, $addr, $city, $town, $picurl);
