@@ -9,6 +9,9 @@
     $mysqli = new mysqli('localhost', 'root', '', 'ispan', 3306);
     $mysqli->set_charset('utf8');
 
+    $mysqli->query('DELETE FROM food');
+    $mysqli->query('ALTER TABLE food AUTO_INCREMENT = 1');
+
     $sql = 'INSERT INTO food (foodid,name,addr,feature,city,town,picurl,lat,lng) ' .
             'VALUES (?,?,?,?,?,?,?,?,?)';
     $stmt = $mysqli->prepare($sql);
