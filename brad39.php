@@ -8,10 +8,14 @@
     if (isset($_GET['key'])){
         $sql .= ' WHERE name LIKE ? OR addr LIKE ? OR city LIKE ? OR town LIKE ?';
 
+        $sql .= ' LIMIT 10';
+
         $key = "%{$_GET['key']}%";
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param('ssss', $key, $key, $key, $key);
-    }else{        
+    }else{    
+        $sql .= ' LIMIT 7, 7';
+
         $stmt = $mysqli->prepare($sql);
     }
 
