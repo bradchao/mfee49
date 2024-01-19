@@ -7,6 +7,7 @@
 
         $mysqli = new mysqli('localhost','root','', 'ispan', 3306);
         $mysqli->set_charset('utf8');
+
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param('s', $account);
         $stmt->execute();
@@ -15,6 +16,7 @@
             $stmt->bind_result($id, $account, $hashpasswd, $name);
             $stmt->fetch();
             if (password_verify($passwd, $hashpasswd)){
+                
                 header('location: main.php');
             }
         }
