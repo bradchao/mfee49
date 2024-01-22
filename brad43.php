@@ -6,7 +6,8 @@
         $account = $_REQUEST['account'];
         $passwd = $_REQUEST['passwd'];
 
-        $sql = 'SELECT id, account, passwd, name FROM member WHERE account = ?';
+        $sql = 'SELECT id, account, passwd, name, icon, icontype FROM member ' . 
+                'WHERE account = ?';
 
         $mysqli = new mysqli('localhost','root','', 'ispan', 3306);
         $mysqli->set_charset('utf8');
@@ -16,10 +17,10 @@
         $stmt->execute();
         $stmt->store_result();
         if ($stmt->num_rows() > 0){
-            $stmt->bind_result($id, $account, $hashpasswd, $name);
+            $stmt->bind_result($id, $account, $hashpasswd, $name, $icon, $icontype);
             $stmt->fetch();
             if (password_verify($passwd, $hashpasswd)){
-                $member = new Member($id, $account, $hashpasswd, $name);
+                $member = new Member($id, $account, $hashpasswd, $name,$icon, $icontype);
                 $_SESSION['member'] = $member;
                 header('location: main.php');
             }

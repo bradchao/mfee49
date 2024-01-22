@@ -121,19 +121,23 @@
     }
 
     class Member {
-        private $id, $account, $passwd, $name;
+        private $id, $account, $passwd, $name, $icon, $icontype;
 
-        function __construct($id, $account, $passwd, $name){
+        function __construct($id, $account, $passwd, $name, $icon, $icontype){
             $this->id = $id;
             $this->account = $account;
             $this->passwd = $passwd;
             $this->name = $name;
+            $this->icon = $icon;
+            $this->icontype = $icontype;
         }
 
         function getId(){return $this->id;}
         function getAccount(){return $this->account;}
         function getPasswd(){return $this->passwd;}
         function getName(){return $this->name;}
+        function getIcon(){return base64_encode($this->icon);}
+        function getIconType(){return $this->icontype;}
 
         function setAccount($account){$this->account = $account;}
         function setPasswd($passwd){$this->passwd = $passwd;}
