@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <script>
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+                if (xhttp.readyState == 1){
+                    document.getElementById('div1').innerHTML = '1';
+                }else if (xhttp.readyState == 2){
+                    document.getElementById('div2').innerHTML = '2';
+                }else if (xhttp.readyState == 3){
+                    document.getElementById('div3').innerHTML = '3';
+                }else if (xhttp.readyState == 4){
+                    document.getElementById('div4').innerHTML = '4';
+                    if (xhttp.status == 200){
+                        //console.log(xhttp.status);
+                        //document.getElementById('lottery').innerHTML = 
+                        //    xhttp.responseText;
+                    }else{
+                        console.log(xhttp.status);
+                    }
+                }
+            }
+
+            xhttp.onload = function(){
+                console.log("onload");
+                console.log(xhttp.status);
+                document.getElementById('lottery').innerHTML = 
+                    xhttp.responseText;
+            }
+
+
+            function test(){
+                xhttp.open('GET','brad56.php', true);
+                xhttp.send();
+            }
+        </script>
+        <input type="button" onclick="test()" value="test" />
+        <div id="div1"></div>
+        <div id="div2"></div>
+        <div id="div3"></div>
+        <div id="div4"></div>
+        Lottery: <span id="lottery"></span>
+    </body>
+</html>
