@@ -105,4 +105,42 @@
 
     }
 
+    class Student {
+        private $name, $ch, $eng, $math;
+        function __construct($name, $ch, $eng, $math){
+            $this->name = $name;
+            $this->ch = $ch;
+            $this->eng = $eng;
+            $this->math = $math;
+        }
+
+        function sum(){return $this->ch + $this->eng + $this->math;}
+        function avg(){return $this->sum() / 3;}
+        function getName(){return $this->name;}
+        function setCh($ch){$this->ch = $ch;}
+    }
+
+    class Member {
+        private $id, $account, $passwd, $name;
+
+        function __construct($id, $account, $passwd, $name){
+            $this->id = $id;
+            $this->account = $account;
+            $this->passwd = $passwd;
+            $this->name = $name;
+        }
+
+        function getId(){return $this->id;}
+        function getAccount(){return $this->account;}
+        function getPasswd(){return $this->passwd;}
+        function getName(){return $this->name;}
+
+        function setAccount($account){$this->account = $account;}
+        function setPasswd($passwd){$this->passwd = $passwd;}
+        function setName($name){$this->name = $name;}
+
+
+
+    }
+
 ?>
