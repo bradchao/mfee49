@@ -1,4 +1,7 @@
 <?php
+    include 'bradapis.php';
+    session_start();
+
     if (isset($_REQUEST['account'])){
         $account = $_REQUEST['account'];
         $passwd = $_REQUEST['passwd'];
@@ -16,7 +19,8 @@
             $stmt->bind_result($id, $account, $hashpasswd, $name);
             $stmt->fetch();
             if (password_verify($passwd, $hashpasswd)){
-                
+                $member = new Member($id, $account, $hashpasswd, $name);
+                $_SESSION['member'] = $member;
                 header('location: main.php');
             }
         }
